@@ -337,3 +337,26 @@ const FootballMatchesScreen = () => {
 };
 
 export default FootballMatchesScreen;
+import React, { useEffect } from 'react';
+import TelegramEmulator from '../TelegramEmulator'; // Используйте эмулятор для разработки
+
+const Telegram = window.Telegram || TelegramEmulator;
+
+const FootballMatchesScreen = () => {
+  useEffect(() => {
+    if (Telegram.initDataUnsafe) {
+      const user = Telegram.initDataUnsafe.user;
+      console.log('User data:', user);
+    }
+
+    Telegram.MainButton.show();
+    Telegram.MainButton.setText('Готово');
+    Telegram.MainButton.onClick(() => {
+      console.log('Main button clicked');
+    });
+  }, []);
+  
+  return <div>Ваше приложение</div>;
+};
+
+export default FootballMatchesScreen;
